@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async IAsyncEnumerable<int> GenerateNumbersAsync(
+        int count,
+        [System.Runtime.CompilerServices.EnumeratorCancellation] 
+        CancellationToken cancellationToken = default)
+    {
+        for (int i = 1; i <= count; i++)
+        {
+            await Task.Delay(200, cancellationToken);
+            yield return i;
+        }
+    }
+
+    static async Task Main()
+    {
+        var cts = new CancellationTokenSource();
+        
+        // Отменяем через 1 секунду
+        cts.CancelAfter(1000);
+
+        try
+        {
+            await foreach (var number in GenerateNumbersAsync(10, cts.Token))
+            {
+                Console.WriteLine($"Number: {number}");
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            Console.WriteLine("Operation was cancelled");
+        }
+    }
+}
