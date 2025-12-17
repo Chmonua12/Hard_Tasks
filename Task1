@@ -1,3 +1,7 @@
+//Обработка исключений в async/await Симулировать метод, который иногда выбрасывает исключение. 
+//Запустить 5 раз параллельно, корректно обработать исключения и вывести: успешные результаты, ошибки.
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +53,7 @@ class Program
         
         program.Task1().GetAwaiter().GetResult();
         
-        Console.WriteLine("\nНажмите любую клавишу для выхода...");
+        Console.WriteLine("\nНажмите любую клавишу для выхода");
         Console.ReadKey();
     }
 }

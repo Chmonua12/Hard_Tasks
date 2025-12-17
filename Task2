@@ -1,3 +1,6 @@
+//Собственный асинхронный итератор Реализовать метод: async IAsyncEnumerable GenerateNumbersAsync(int count); 
+//Каждое число — через задержку 200 мс. Вызвать через await foreach.
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
